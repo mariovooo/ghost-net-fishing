@@ -1,0 +1,23 @@
+/build/
+
+# Eclipse
+.classpath
+.project
+.settings/
+.apt_generated/
+.factorypath
+
+# Maven
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Logs
+*.log
+
+# Betriebssystem-abhängige Dateien
+.DS_Store
+Thumbs.db
+
+# Sonstiges
+*.iml
+.idea/
