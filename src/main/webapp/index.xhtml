@@ -13,6 +13,18 @@
 
         <h:outputText value="" 
                       rendered="#{not empty TestBean.name}" />
+                      
+                              <h:dataTable value="#{ghostnet.allGhostNets}" var="net" border="1">
+        <h:column>
+            #{net.location} Location
+        </h:column>
+        <h:column>
+            #{net.estimatedSize}
+        </h:column>
+        <h:column>
+            #{net.state}
+        </h:column>
+    </h:dataTable>
     </h:form>
 </h:body>
 </html>

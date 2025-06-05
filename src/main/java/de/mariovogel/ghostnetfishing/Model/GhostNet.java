@@ -1,0 +1,47 @@
+package de.mariovogel.ghostnetfishing.Model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "ghostnet")
+public class GhostNet {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+	private String location;
+	private Float estimatedSize;
+	private String state;
+	
+	public Long getId() {
+		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	public String getLocation() {
+		return location;
+	}
+	
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	
+	public Float getEstimatedSize() {
+		return estimatedSize;
+	}
+	
+	public void setEstimatedSize(Float estimatedSize) {
+		this.estimatedSize = estimatedSize;
+	}
+	
+	public String getState() {
+		return state;
+	}
+	
+	public void setState(String state) {
+		this.state = state;
+	}
+}
