@@ -15,6 +15,7 @@ public class GhostNetService {
 
     public void save(GhostNet net) {
         em.persist(net);
+        System.out.println("Request saved");
     }
     
     public List<GhostNet> findAll() {

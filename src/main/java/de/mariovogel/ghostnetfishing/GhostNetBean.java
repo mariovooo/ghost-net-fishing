@@ -6,12 +6,14 @@ import de.mariovogel.ghostnetfishing.Model.GhostNet;
 import de.mariovogel.ghostnetfishing.Service.GhostNetService;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 @RequestScoped
 @Named(value = "ghostnet")
 public class GhostNetBean {
 	
+	@Inject
     private GhostNetService service;
     
 	private String location;
@@ -39,7 +41,11 @@ public class GhostNetBean {
     public List<GhostNet> getAllGhostNets() {
         return allGhostNets;
     }
-	
+    
+    public GhostNetService getService() {
+		return service;
+	}
+    
 	public String getLocation() {
 		return location;
 	}

@@ -10,7 +10,7 @@
         Standort: <h:inputText value="#{ghostnet.location}" /><br/>
         Geschätzte Größe: <h:inputText value="#{ghostnet.estimatedSize}" /><br/>
 
-        <h:commandButton value="Netz melden" action="#{TestBean.submit}" /><br/><br/>
+        <h:commandButton value="Netz melden" action="#{ghostnet.submit}" /><br/><br/>
 
         <h:outputText value="" 
                       rendered="#{not empty ghostnet.location and not empty ghostnet.estimatedSize}" />
