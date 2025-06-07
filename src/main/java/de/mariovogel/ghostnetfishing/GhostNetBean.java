@@ -24,7 +24,7 @@ public class GhostNetBean {
         GhostNet net = new GhostNet();
         net.setLocation(location);
         net.setEstimatedSize(estimatedSize);
-        net.setState(state);
+        net.setState("gemeldet");
 
         service.save(net);
 
@@ -34,6 +34,7 @@ public class GhostNetBean {
     
     private List<GhostNet> allGhostNets;
 
+    @PostConstruct
     public void init() {
         allGhostNets = service.findAll();
     }

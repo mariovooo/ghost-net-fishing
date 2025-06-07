@@ -5,18 +5,10 @@
     <title>Hello</title>
 </h:head>
 <h:body>
-    <h1>test</h1>
-    <h:form>
-        Name: <h:inputText value="#{TestBean.name}" /><br/>
-
-        <h:commandButton value="Absenden" action="#{TestBean.submit}" /><br/><br/>
-
-        <h:outputText value="" 
-                      rendered="#{not empty TestBean.name}" />
-                      
-                              <h:dataTable value="#{ghostnet.allGhostNets}" var="net" border="1">
-        <h:column>
-            #{net.location} Location
+    <h1>Aktuelle Geisternetze</h1>
+    <h:dataTable value="#{ghostnet.allGhostNets}" var="net" border="1">
+            <h:column>
+            #{net.location}
         </h:column>
         <h:column>
             #{net.estimatedSize}
@@ -25,6 +17,5 @@
             #{net.state}
         </h:column>
     </h:dataTable>
-    </h:form>
 </h:body>
 </html>
