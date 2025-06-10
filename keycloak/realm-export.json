@@ -1,0 +1,21 @@
+{
+  "realm": "ghostnet",
+  "enabled": true,
+  "users": [],
+  "clients": [
+    {
+      "clientId": "ghostnet-client",
+      "enabled": true,
+      "publicClient": false,
+      "directAccessGrantsEnabled": true,
+      "protocol": "openid-connect",
+      "secret": "client-secret-123",
+      "redirectUris": [
+        "http://localhost:8080/*"
+      ]
+    }
+  ],
+  "roles": {
+    "realm": []
+  }
+}
