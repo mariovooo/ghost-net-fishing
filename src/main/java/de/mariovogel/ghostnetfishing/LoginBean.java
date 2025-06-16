@@ -95,7 +95,7 @@ public class LoginBean implements Serializable {
         // Keycloak Logout mit id_token_hint
         String logoutUrl = "http://localhost:8081/realms/ghostnet/protocol/openid-connect/logout"
             + "?id_token_hint=" + urlEncode(getIdToken())
-            + "&post_logout_redirect_uri=" + urlEncode("http://localhost:8080/GhostNetFishing/login.xhtml");
+            + "&post_logout_redirect_uri=" + urlEncode("http://localhost:8080/GhostNetFishing");
 
         try {
             FacesContext.getCurrentInstance()

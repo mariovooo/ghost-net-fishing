@@ -37,7 +37,7 @@ public class AuthFilter implements Filter {
         // Token aus LoginBean prüfen
         if (loginBean == null || loginBean.getToken() == null || loginBean.getToken().isEmpty()) {
             // Nicht eingeloggt → auf Login-Seite weiterleiten
-            res.sendRedirect(req.getContextPath() + "/login.xhtml");
+            res.sendRedirect("http://localhost:8081/realms/ghostnet/protocol/openid-connect/auth?client_id=ghostnet-client&redirect_uri=http://localhost:8080/GhostNetFishing/callback.xhtml&response_type=code&scope=openid");
         } else {
             // Eingeloggt → Anfrage weiterleiten
             chain.doFilter(request, response);
