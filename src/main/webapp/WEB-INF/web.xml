@@ -21,5 +21,17 @@
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
+    
+    <filter>
+    <filter-name>AuthFilter</filter-name>
+    <filter-class>de.mariovogel.ghostnetfishing.AuthFilter</filter-class>
+</filter>
+
+<filter-mapping>
+    <filter-name>AuthFilter</filter-name>
+    <url-pattern>/secure.xhtml</url-pattern>
+</filter-mapping>
+    
+    
 
 </web-app>

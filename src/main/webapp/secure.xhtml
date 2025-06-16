@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head><title>Geschützt</title></h:head>
+<f:metadata>
+    <f:viewAction action="#{loginBean.checkLogin}" />
+</f:metadata>
+
+<h:body>
+    <h1>Willkommen, #{loginBean.username}</h1>
+
+    <h:outputText value="Token: #{loginBean.token}" />
+    
+</h:body>
+</html>

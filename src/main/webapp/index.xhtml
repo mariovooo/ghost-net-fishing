@@ -17,5 +17,10 @@
             #{net.state}
         </h:column>
     </h:dataTable>
+    <a href="http://localhost:8081/realms/ghostnet/protocol/openid-connect/auth?client_id=ghostnet-client&amp;redirect_uri=http://localhost:8080/GhostNetFishing/callback.xhtml&amp;response_type=code&amp;scope=openid">login</a>
+<h:form>
+    <h:commandButton value="Logout" action="#{loginBean.logout}" />
+</h:form>
+
 </h:body>
 </html>
