@@ -37,6 +37,16 @@
         </h:column>
         
             <h:column>
+        <f:facet name="header">Zugewiesene Person</f:facet>
+        <h:outputText value="#{net.assignedUser}" rendered="#{!net.editMode}" />
+        <h:inputText value="#{net.assignedUser}" rendered="#{net.editMode}" />
+                            <h:commandButton value="Speichern" action="#{ghostnet.update(net)}"
+                             rendered="#{net.editMode}" />
+                    <h:commandButton value="Mir zuweisen" action="#{net.setAssignedUser(loginBean.username)}"
+                             rendered="#{net.editMode}" />
+        </h:column>
+        
+            <h:column>
         <f:facet name="header">Aktion</f:facet>
             <h:commandButton value="Edit" action="#{net.setEditMode(true)}"
                              rendered="#{!net.editMode}" />
