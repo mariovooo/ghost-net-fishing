@@ -18,6 +18,12 @@ public class GhostNetService {
         System.out.println("Request saved");
     }
     
+    public void update(GhostNet net) {
+        em.merge(net);
+        System.out.println("Request updated");
+    }
+
+    
     public List<GhostNet> findAll() {
         return em.createQuery("SELECT g FROM GhostNet g", GhostNet.class).getResultList();
     }

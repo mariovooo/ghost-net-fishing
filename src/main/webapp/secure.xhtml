@@ -32,12 +32,13 @@
             <f:selectItem itemValue="reported" itemLabel="Reported" />
             <f:selectItem itemValue="in_progress" itemLabel="In Progress" />
             <f:selectItem itemValue="resolved" itemLabel="Resolved" />
+            <f:ajax listener="#{ghostnet.update(net)}" render="@form" />
             </h:selectOneMenu>
         </h:column>
         
             <h:column>
         <f:facet name="header">Aktion</f:facet>
-            <h:commandButton value="Edit" action="#{net.setEditMode(true)}" onclick="console.log('teest');"
+            <h:commandButton value="Edit" action="#{net.setEditMode(true)}"
                              rendered="#{!net.editMode}" />
     </h:column>
         

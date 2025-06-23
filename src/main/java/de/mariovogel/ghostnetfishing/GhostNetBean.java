@@ -23,7 +23,7 @@ public class GhostNetBean implements Serializable {
 	private String location;
 	private Float estimatedSize;
 	private String state;
-	private Boolean editMode;
+	private Boolean editMode = false;
 	
     public String submit() {
         GhostNet net = new GhostNet();
@@ -36,6 +36,11 @@ public class GhostNetBean implements Serializable {
         return "success";
     }
     
+    public String update(GhostNet ghostNet) {
+		ghostNet.setEditMode(false);
+        service.update(ghostNet);
+		return "success";
+	}
     
     private List<GhostNet> allGhostNets;
 
