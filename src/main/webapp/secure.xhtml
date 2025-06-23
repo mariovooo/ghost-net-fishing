@@ -9,6 +9,41 @@
 
 <h:body>
     <h1>Willkommen, #{loginBean.username}</h1>
+    
+        <h1>Aktuelle Geisternetze</h1>
+        <h:form id="form">
+    <h:dataTable value="#{ghostnet.allGhostNets}" var="net" border="1">
+        
+    <h:column>
+        <f:facet name="header">Standort</f:facet>
+        <h:outputText value="#{net.location}" rendered="#{!net.editMode}" />
+        <h:inputText value="#{net.location}" rendered="#{net.editMode}" />
+    </h:column>
+    <h:column>
+        <f:facet name="header">Geschätzte Größe</f:facet>
+        <h:outputText value="#{net.estimatedSize}" rendered="#{!net.editMode}" />
+        <h:inputText value="#{net.estimatedSize}" rendered="#{net.editMode}" />
+        </h:column>
+        
+        <h:column>
+        <f:facet name="header">Status</f:facet>
+        <h:outputText value="#{net.state}" rendered="#{!net.editMode}" />
+        <h:selectOneMenu value="#{net.state}" rendered="#{net.editMode}">
+            <f:selectItem itemValue="reported" itemLabel="Reported" />
+            <f:selectItem itemValue="in_progress" itemLabel="In Progress" />
+            <f:selectItem itemValue="resolved" itemLabel="Resolved" />
+            </h:selectOneMenu>
+        </h:column>
+        
+            <h:column>
+        <f:facet name="header">Aktion</f:facet>
+            <h:commandButton value="Edit" action="#{net.setEditMode(true)}" onclick="console.log('teest');"
+                             rendered="#{!net.editMode}" />
+    </h:column>
+        
+        
+    </h:dataTable>
+    </h:form>
 
     <h:outputText value="Token: #{loginBean.token}" />
     

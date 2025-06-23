@@ -1,17 +1,21 @@
 package de.mariovogel.ghostnetfishing;
 
+import java.io.Serializable;
 import java.util.List;
 
 import de.mariovogel.ghostnetfishing.Model.GhostNet;
 import de.mariovogel.ghostnetfishing.Service.GhostNetService;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
-@RequestScoped
+@ViewScoped
 @Named(value = "ghostnet")
-public class GhostNetBean {
+public class GhostNetBean implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	
 	@Inject
     private GhostNetService service;
@@ -19,6 +23,7 @@ public class GhostNetBean {
 	private String location;
 	private Float estimatedSize;
 	private String state;
+	private Boolean editMode;
 	
     public String submit() {
         GhostNet net = new GhostNet();
@@ -70,4 +75,12 @@ public class GhostNetBean {
 	public void setState(String state) {
 		this.state = state;
 	}
+
+    public Boolean getEditMode() {
+		return editMode;
+	}
+    public void setEditMode(Boolean editMode) {
+    	this.editMode = editMode;
+    }
+
 }

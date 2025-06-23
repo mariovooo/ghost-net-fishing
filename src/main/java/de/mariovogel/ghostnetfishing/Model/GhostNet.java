@@ -12,6 +12,7 @@ public class GhostNet {
 	private String location;
 	private Float estimatedSize;
 	private String state;
+	private Boolean editMode = false;
 	
 	public Long getId() {
 		return id;
@@ -43,5 +44,13 @@ public class GhostNet {
 	
 	public void setState(String state) {
 		this.state = state;
+	}
+	
+	public Boolean getEditMode() {
+	    return editMode;
+	}
+
+	public void setEditMode(Boolean editMode) {
+	    this.editMode = editMode;
 	}
 }
