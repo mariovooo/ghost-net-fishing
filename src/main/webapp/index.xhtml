@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
     <title>Hello</title>
 </h:head>
 <h:body>
+<ui:include src="/navigation.xhtml" />
     <a href="http://localhost:8081/realms/ghostnet/protocol/openid-connect/auth?client_id=ghostnet-client&amp;redirect_uri=http://localhost:8080/GhostNetFishing/callback.xhtml&amp;response_type=code&amp;scope=openid">login</a>
 <h:form>
     <h:commandButton value="Logout" action="#{loginBean.logout}" />
