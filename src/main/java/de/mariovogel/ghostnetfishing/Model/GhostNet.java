@@ -9,11 +9,12 @@ public class GhostNet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-	private String location;
 	private Float estimatedSize;
 	private String state;
 	private String assignedUser;
 	private Boolean editMode = false;
+    @OneToOne(cascade = CascadeType.PERSIST)
+	private Location location;
 	
 	public Long getId() {
 		return id;
@@ -23,11 +24,11 @@ public class GhostNet {
 		this.id = id;
 	}
 	
-	public String getLocation() {
+	public Location getLocation() {
 		return location;
 	}
 	
-	public void setLocation(String location) {
+	public void setLocation(Location location) {
 		this.location = location;
 	}
 	

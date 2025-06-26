@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import de.mariovogel.ghostnetfishing.Model.GhostNet;
+import de.mariovogel.ghostnetfishing.Model.Location;
 import de.mariovogel.ghostnetfishing.Service.GhostNetService;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
@@ -20,11 +21,11 @@ public class GhostNetBean implements Serializable {
 	@Inject
     private GhostNetService service;
     
-	private String location;
 	private Float estimatedSize;
 	private String state;
 	private String assignedUser;
 	private Boolean editMode = false;
+    private Location location = new Location(0.0, 0.0);
 	
     public String submit() {
         GhostNet net = new GhostNet();
@@ -59,11 +60,11 @@ public class GhostNetBean implements Serializable {
 		return service;
 	}
     
-	public String getLocation() {
+	public Location getLocation() {
 		return location;
 	}
 	
-	public void setLocation(String location) {
+	public void setLocation(Location location) {
 		this.location = location;
 	}
 	

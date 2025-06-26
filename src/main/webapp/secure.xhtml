@@ -15,9 +15,14 @@
     <h:dataTable value="#{ghostnet.allGhostNets}" var="net" border="1">
         
     <h:column>
-        <f:facet name="header">Standort</f:facet>
-        <h:outputText value="#{net.location}" rendered="#{!net.editMode}" />
-        <h:inputText value="#{net.location}" rendered="#{net.editMode}" />
+        <f:facet name="header">Breitengrad</f:facet>
+        <h:outputText value="#{net.location.latitude}" rendered="#{!net.editMode}" />
+        <h:inputText value="#{net.location.latitude}" rendered="#{net.editMode}" />
+    </h:column>
+        <h:column>
+        <f:facet name="header">Längengrad</f:facet>
+        <h:outputText value="#{net.location.longitude}" rendered="#{!net.editMode}" />
+        <h:inputText value="#{net.location.longitude}" rendered="#{net.editMode}" />
     </h:column>
     <h:column>
         <f:facet name="header">Geschätzte Größe</f:facet>
@@ -32,25 +37,26 @@
             <f:selectItem itemValue="reported" itemLabel="Reported" />
             <f:selectItem itemValue="in_progress" itemLabel="In Progress" />
             <f:selectItem itemValue="resolved" itemLabel="Resolved" />
-            <f:ajax listener="#{ghostnet.update(net)}" render="@form" />
             </h:selectOneMenu>
         </h:column>
         
             <h:column>
         <f:facet name="header">Zugewiesene Person</f:facet>
         <h:outputText value="#{net.assignedUser}" rendered="#{!net.editMode}" />
-        <h:inputText value="#{net.assignedUser}" rendered="#{net.editMode}" />
-                            <h:commandButton value="Speichern" action="#{ghostnet.update(net)}"
-                             rendered="#{net.editMode}" />
-                    <h:commandButton value="Mir zuweisen" action="#{net.setAssignedUser(loginBean.username)}"
-                             rendered="#{net.editMode}" />
-                             // git token test
+        <h:inputText value="#{net.assignedUser}" rendered="#{net.editMode}" id="assignedUserField"/>
+			<h:commandLink value="Mir zuweisen"
+			               action="#{net.setAssignedUser(loginBean.username)}"
+			               rendered="#{net.editMode}">
+			    <f:ajax execute="@this" render="assignedUserField" />
+			</h:commandLink>
         </h:column>
         
             <h:column>
         <f:facet name="header">Aktion</f:facet>
             <h:commandButton value="Edit" action="#{net.setEditMode(true)}"
                              rendered="#{!net.editMode}" />
+            <h:commandButton value="Speichern" action="#{ghostnet.update(net)}"
+                             rendered="#{net.editMode}" />
     </h:column>
         
         
