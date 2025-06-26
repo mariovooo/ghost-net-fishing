@@ -1,9 +1,11 @@
 package de.mariovogel.ghostnetfishing;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import de.mariovogel.ghostnetfishing.Model.GhostNet;
+import de.mariovogel.ghostnetfishing.Model.GhostNet.State;
 import de.mariovogel.ghostnetfishing.Model.Location;
 import de.mariovogel.ghostnetfishing.Service.GhostNetService;
 import jakarta.annotation.PostConstruct;
@@ -22,7 +24,7 @@ public class GhostNetBean implements Serializable {
     private GhostNetService service;
     
 	private Float estimatedSize;
-	private String state;
+	private State state;
 	private String assignedUser;
 	private Boolean editMode = false;
     private Location location = new Location(0.0, 0.0);
@@ -32,7 +34,8 @@ public class GhostNetBean implements Serializable {
         net.setLocation(location);
         net.setEstimatedSize(estimatedSize);
         net.setAssignedUser(assignedUser);
-        net.setState("gemeldet");
+        net.getState();
+		net.setState(State.REPORTED);
 
         service.save(net);
 
@@ -46,6 +49,11 @@ public class GhostNetBean implements Serializable {
 	}
     
     private List<GhostNet> allGhostNets;
+    
+    public List<GhostNet.State> getAllStates() {
+    	System.out.println(Arrays.asList(GhostNet.State.values()));
+        return Arrays.asList(GhostNet.State.values());
+    }
 
     @PostConstruct
     public void init() {
@@ -76,11 +84,11 @@ public class GhostNetBean implements Serializable {
 		this.estimatedSize = estimatedSize;
 	}
 	
-	public String getState() {
+	public State getState() {
 		return state;
 	}
 	
-	public void setState(String state) {
+	public void setState(State state) {
 		this.state = state;
 	}
 	

@@ -25,18 +25,19 @@
         <h:inputText value="#{net.location.longitude}" rendered="#{net.editMode}" />
     </h:column>
     <h:column>
-        <f:facet name="header">Geschätzte Größe</f:facet>
-        <h:outputText value="#{net.estimatedSize}" rendered="#{!net.editMode}" />
+        <f:facet name="header">Geschätzte Größe (m²)</f:facet>
+        <h:outputText value="#{net.estimatedSize} #{'m²'}" rendered="#{!net.editMode}" />
         <h:inputText value="#{net.estimatedSize}" rendered="#{net.editMode}" />
         </h:column>
         
         <h:column>
         <f:facet name="header">Status</f:facet>
-        <h:outputText value="#{net.state}" rendered="#{!net.editMode}" />
+        <h:outputText value="#{net.state.label}" rendered="#{!net.editMode}" />
         <h:selectOneMenu value="#{net.state}" rendered="#{net.editMode}">
-            <f:selectItem itemValue="reported" itemLabel="Reported" />
-            <f:selectItem itemValue="in_progress" itemLabel="In Progress" />
-            <f:selectItem itemValue="resolved" itemLabel="Resolved" />
+        
+                    <f:selectItems value="#{ghostnet.getAllStates()}" var="s"
+                           itemValue="#{s}" itemLabel="#{s.label}" />
+        
             </h:selectOneMenu>
         </h:column>
         
