@@ -55,6 +55,7 @@
         <f:selectItems value="#{loginBean.userList}" var="user"
                        itemValue="#{user.username}"
                        itemLabel="#{user.username}" />
+                               <f:ajax execute="@this" render="@form" />
     </h:selectOneMenu>
     <h:commandLink value="Mir zuweisen"
                    action="#{net.setAssignedUser(loginBean.username)}"
@@ -65,7 +66,7 @@
 
 <h:column>
     <f:facet name="header">Telefonnummer</f:facet>
-    <h:outputText value="#{loginBean.phoneNumberForUser(net.assignedUser)}"/>
+    <h:outputText value="#{loginBean.getPhoneNumberForUser(net.assignedUser)}"/>
 </h:column>
 
         
