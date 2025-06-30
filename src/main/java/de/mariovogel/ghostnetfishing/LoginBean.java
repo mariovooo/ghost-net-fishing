@@ -160,7 +160,15 @@ public class LoginBean implements Serializable {
         this.selectedUsername = selectedUsername;
     }
 
-    
+    public String getPhoneNumberForUser(String username) {
+        if (username == null) return "";
+        return userList.stream()
+            .filter(u -> username.equals(u.getUsername()))
+            .map(KeycloakUser::getPhoneNumber)
+            .findFirst()
+            .orElse("");
+    }
+
 
     
     public String logout() {

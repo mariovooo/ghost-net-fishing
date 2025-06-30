@@ -54,15 +54,18 @@
         <f:selectItem itemLabel="-- bitte wählen --" itemValue="" />
         <f:selectItems value="#{loginBean.userList}" var="user"
                        itemValue="#{user.username}"
-                       itemLabel="#{user.username} (#{user.phoneNumber})" />
+                       itemLabel="#{user.username}" />
     </h:selectOneMenu>
-
-    <!-- Optional: Button „Mir zuweisen“ -->
     <h:commandLink value="Mir zuweisen"
                    action="#{net.setAssignedUser(loginBean.username)}"
                    rendered="#{net.editMode}">
         <f:ajax execute="@this" render="@form" />
     </h:commandLink>
+</h:column>
+
+<h:column>
+    <f:facet name="header">Telefonnummer</f:facet>
+    <h:outputText value="#{loginBean.phoneNumberForUser(net.assignedUser)}"/>
 </h:column>
 
         

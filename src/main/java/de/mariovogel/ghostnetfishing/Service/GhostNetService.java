@@ -27,6 +27,6 @@ public class GhostNetService {
     public List<GhostNet> findAll() {
         return em.createQuery("SELECT g FROM GhostNet g", GhostNet.class).getResultList();
     }
-   
+    
 }
 
