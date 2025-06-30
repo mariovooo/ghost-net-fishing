@@ -35,15 +35,21 @@ public class KeycloakAdminClient {
         return new JSONObject(json).getString("access_token");
     }
 
-    public void createUser(String username, String password) {
+    public void createUser(String username, String password, String phone) {
         String token = getAdminAccessToken();
 
         Client client = ClientBuilder.newClient();
+        
+        JSONObject attributes = new JSONObject();
+        attributes.put("phoneNumber", phone);
 
         String userJson = new JSONObject()
             .put("username", username)
             .put("enabled", true)
+            .put("attributes", attributes)
             .toString();
+        
+        
 
         Response response = client.target(serverUrl + "/admin/realms/ghostnet/users")
             .request()

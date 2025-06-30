@@ -10,6 +10,13 @@
       "directAccessGrantsEnabled": true,
       "protocol": "openid-connect",
       "secret": "client-secret-123",
+            "defaultClientScopes": [
+        "web-origins",
+        "profile",
+        "email",
+        "roles",
+        "phone"
+      ],
       "redirectUris": [
         "http://localhost:8080/*"
       ]

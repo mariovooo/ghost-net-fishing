@@ -10,12 +10,13 @@ public class RegistrationBean {
 
     private String username;
     private String password;
+    private String phone;
 
     private KeycloakAdminClient kcClient = new KeycloakAdminClient();
 
     public String register() {
         try {
-            kcClient.createUser(username, password);
+            kcClient.createUser(username, password, phone);
             return "login.xhtml?faces-redirect=true"; // Weiterleitung zur Login-Seite
         } catch (Exception e) {
             e.printStackTrace();
@@ -28,4 +29,6 @@ public class RegistrationBean {
     public void setUsername(String username) { this.username = username; }
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
+    public String getPhone() { return phone; }
+    public void setPhone(String phone) { this.phone = phone; }
 }

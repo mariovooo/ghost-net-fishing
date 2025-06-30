@@ -23,6 +23,7 @@ public class LoginBean implements Serializable {
 	private String token;
 	private String idToken;
     private String username;
+    private String phone;
 
     public void handleCallback() {
         Map<String, String> params = FacesContext.getCurrentInstance()
@@ -37,6 +38,7 @@ public class LoginBean implements Serializable {
             form.param("grant_type", "authorization_code");
             form.param("code", code);
             form.param("client_id", "ghostnet-client");
+            form.param("client_secret", "client-secret-123"); // <-- Das ist entscheidend!
             form.param("redirect_uri", "http://localhost:8080/GhostNetFishing/callback.xhtml");
 
             var response = client
@@ -74,6 +76,20 @@ public class LoginBean implements Serializable {
         return idToken;
     }
     
+    public String getPhone() {
+		if (this.token != null && !this.token.isEmpty()) {
+			try {
+				String[] parts = this.token.split("\\.");
+				String payload = new String(java.util.Base64.getUrlDecoder().decode(parts[1]));
+				Map<String, Object> claims = JsonbBuilder.create().fromJson(payload, Map.class);
+				return (String) claims.get("phone_number");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return phone;
+	}
+    
     public void checkLogin() {
         if (this.token == null || this.token.isEmpty()) {
             try {
@@ -85,6 +101,9 @@ public class LoginBean implements Serializable {
             }
         } else if (this.username == null) {
             this.username = decodeUsernameFromJwt(token);
+            if (this.username == null) {
+            	System.out.println(token);
+            }
         }
     }
     
