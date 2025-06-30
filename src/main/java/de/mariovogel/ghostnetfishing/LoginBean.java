@@ -10,7 +10,11 @@ import jakarta.ws.rs.core.Form;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+
+import de.mariovogel.ghostnetfishing.Model.KeycloakUser;
 
 @Named
 @SessionScoped
@@ -24,6 +28,14 @@ public class LoginBean implements Serializable {
 	private String idToken;
     private String username;
     private String phone;
+    private List<KeycloakUser> userList = new ArrayList<>();
+    private String selectedUsername;
+
+    public List<KeycloakUser> getUserList() {
+        return userList;
+    }
+
+    
 
     public void handleCallback() {
         Map<String, String> params = FacesContext.getCurrentInstance()
@@ -52,6 +64,39 @@ public class LoginBean implements Serializable {
             var json = jsonb.fromJson(jsonString, java.util.Map.class);
             this.token = (String) json.get("access_token");
             this.idToken = (String) json.get("id_token");
+            
+         // Benutzerliste aus Keycloak holen
+            // todo: cleanup, remove redundant code, encapsulate in dis
+            var userResponse = client
+                .target("http://localhost:8081/admin/realms/ghostnet/users")
+                .request()
+                .header("Authorization", "Bearer " + this.token)
+                .get();
+
+            String userJson = userResponse.readEntity(String.class);
+            System.out.println("Alle Benutzer:\n" + userJson);
+
+            var jsonbUser = JsonbBuilder.create();
+            var users = jsonbUser.fromJson(userJson, List.class);
+
+            for (Object obj : users) {
+                if (obj instanceof Map) {
+                    Map<String, Object> userMap = (Map<String, Object>) obj;
+                    String name = (String) userMap.get("username");
+                    String phone = null;
+
+                    Map<String, Object> attributes = (Map<String, Object>) userMap.get("attributes");
+                    if (attributes != null && attributes.get("phoneNumber") instanceof List) {
+                        List<?> phoneList = (List<?>) attributes.get("phoneNumber");
+                        if (!phoneList.isEmpty()) {
+                            phone = phoneList.get(0).toString();
+                        }
+                    }
+
+                    userList.add(new KeycloakUser(name, phone));
+                }
+            }
+
 
             
             // Weiterleitung auf geschützte Seite
@@ -106,6 +151,17 @@ public class LoginBean implements Serializable {
             }
         }
     }
+
+    public String getSelectedUsername() {
+        return selectedUsername;
+    }
+
+    public void setSelectedUsername(String selectedUsername) {
+        this.selectedUsername = selectedUsername;
+    }
+
+    
+
     
     public String logout() {
         // Session invalidieren

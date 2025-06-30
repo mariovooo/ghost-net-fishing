@@ -6,6 +6,10 @@ import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.core.Form;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+
+import java.util.List;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class KeycloakAdminClient {
@@ -14,14 +18,18 @@ public class KeycloakAdminClient {
     private final String clientId = "admin-cli";
     private final String username = "admin";
     private final String password = "admin";
+    
+    public Form getClientForm() {
+		return new Form()
+			.param("grant_type", "password")
+			.param("client_id", clientId)
+			.param("username", username)
+			.param("password", password);
+	}
 
     public String getAdminAccessToken() {
         Client client = ClientBuilder.newClient();
-        Form form = new Form()
-            .param("grant_type", "password")
-            .param("client_id", clientId)
-            .param("username", username)
-            .param("password", password);
+        Form form = getClientForm();
 
         Response response = client.target(serverUrl + "/realms/" + realm + "/protocol/openid-connect/token")
             .request(MediaType.APPLICATION_JSON)
@@ -34,6 +42,26 @@ public class KeycloakAdminClient {
         String json = response.readEntity(String.class);
         return new JSONObject(json).getString("access_token");
     }
+    
+    public List<String> getAllUsernames() {
+		String token = getAdminAccessToken();
+
+		Client client = ClientBuilder.newClient();
+		Response response = client.target(serverUrl + "/admin/realms/" + realm + "/users")
+			.request(MediaType.APPLICATION_JSON)
+			.header("Authorization", "Bearer " + token)
+			.get();
+
+		if (response.getStatus() != 200) {
+			throw new RuntimeException("Failed to fetch users");
+		}
+
+		List<JSONObject> users = response.readEntity(List.class);
+		System.out.println("Fetched users: " + users);
+		return users.stream()
+				.map(user -> user.getString("username"))
+				.toList();
+	}
 
     public void createUser(String username, String password, String phone) {
         String token = getAdminAccessToken();

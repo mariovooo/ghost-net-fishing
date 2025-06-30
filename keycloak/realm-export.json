@@ -20,6 +20,11 @@
       "redirectUris": [
         "http://localhost:8080/*"
       ]
+    },
+    {
+      "clientId": "realm-management",
+      "protocol": "openid-connect",
+      "defaultRoles": ["view-users"]
     }
   ],
   "roles": {

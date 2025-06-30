@@ -43,16 +43,28 @@
             </h:selectOneMenu>
         </h:column>
         
-            <h:column>
-        <f:facet name="header">Zugewiesene Person</f:facet>
-        <h:outputText value="#{net.assignedUser}" rendered="#{!net.editMode}" />
-        <h:inputText value="#{net.assignedUser}" rendered="#{net.editMode}" id="assignedUserField"/>
-			<h:commandLink value="Mir zuweisen"
-			               action="#{net.setAssignedUser(loginBean.username)}"
-			               rendered="#{net.editMode}">
-			    <f:ajax execute="@this" render="assignedUserField" />
-			</h:commandLink>
-        </h:column>
+        <h:column>
+    <f:facet name="header">Zugewiesene Person</f:facet>
+
+    <!-- Anzeige im Lesemodus -->
+    <h:outputText value="#{net.assignedUser}" rendered="#{!net.editMode}" />
+
+    <!-- Dropdown im Bearbeitungsmodus -->
+    <h:selectOneMenu value="#{net.assignedUser}" rendered="#{net.editMode}">
+        <f:selectItem itemLabel="-- bitte wählen --" itemValue="" />
+        <f:selectItems value="#{loginBean.userList}" var="user"
+                       itemValue="#{user.username}"
+                       itemLabel="#{user.username} (#{user.phoneNumber})" />
+    </h:selectOneMenu>
+
+    <!-- Optional: Button „Mir zuweisen“ -->
+    <h:commandLink value="Mir zuweisen"
+                   action="#{net.setAssignedUser(loginBean.username)}"
+                   rendered="#{net.editMode}">
+        <f:ajax execute="@this" render="@form" />
+    </h:commandLink>
+</h:column>
+
         
             <h:column>
         <f:facet name="header">Aktion</f:facet>
