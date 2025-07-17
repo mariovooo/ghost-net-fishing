@@ -11,15 +11,22 @@ Dieses Projekt unterstützt die Meldung und Verwaltung von Geisternetzen.
 
 - Java Development Kit (JDK), empfohlen: Version 17+
 - Maven
-- Eclipse IDE (mit Payara Tools Plugin)
+- Eclipse IDE for Enterprise Java and Web Developers (mit Payara Tools Plugin)
 - Payara Server 6.2025.6
 - Docker & Docker Compose
+
+IDE kann frei gewählt werden. Eclipse wird für einen schnellen Start empfohlen
 
 ---
 
 ## Lokale Einrichtung
 
 ### 1. Repository klonen
+
+- Eclipse: **checkout projects from git** → **clone uri** → **import as general project**
+- https://github.com/mariovooo/ghost-net-fishing.git angeben
+
+Alternativ:
 
 ```bash
 git clone https://github.com/mariovooo/ghost-net-fishing.git
@@ -39,6 +46,8 @@ git clone https://github.com/mariovooo/ghost-net-fishing.git
 
 - In Eclipse über **Help** → **Eclipse Marketplace** die **Payara Tools** installieren.
 - Nach der Installation in **Servers** → **New Server** den Payara Server mit dem zuvor installierten Pfad registrieren.
+- Add ghost-net-fishing zum Server
+> Troubleshoot: "can't bridge runtimes": finish, dann Rechtsklick auf den Server → **add and remove** → und Add ghost-net-fishing zum Server
 
 ### 4. Payara Server konfigurieren
 
@@ -60,7 +69,7 @@ http://localhost:4848
    - **Resource Type:** `javax.sql.DataSource`
    - **Database Driver Vendor:** `H2`
 3. Mit **Next** und anschließend **Finish** abschließen.
-4. Den existierenden bzw. soeben erstellten Pool öffnen und im Tab **Additional Properties** die Property **URL** wie folgt erweitern:
+4. Den existierenden bzw. soeben erstellten Pool öffnen und im Tab **Additional Properties** die Property **URL** wie folgt ersetzen bzw. anlegen:
 
 ```
 jdbc:h2:file:~/ghostnetdb;DB_CLOSE_DELAY=-1;MODE=LEGACY
@@ -78,6 +87,8 @@ jdbc:h2:file:~/ghostnetdb;DB_CLOSE_DELAY=-1;MODE=LEGACY
 3. Speichern.
 
 ### 5. Projekt bauen
+
+Zu Maven Projekt konvertieren: **Project Explorer Rechtsklick** → **configure** → **convert to maven project**
 
 Im Projektverzeichnis folgenden Befehl ausführen:
 
