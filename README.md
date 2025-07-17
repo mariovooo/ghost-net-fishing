@@ -1,11 +1,11 @@
 
 # Ghost Net Fishing
 
-Dieses Projekt unterstützt die Erkennung und Analyse von Geisternetzen.  
+Dieses Projekt unterstützt die Meldung und Verwaltung von Geisternetzen.  
 
 ---
 
-# Einrichtung des Projekts für eine lokale Entwicklungsumgebung beschrieben.
+# Einrichtung des Projekts für eine lokale Entwicklungsumgebung
 
 ## Voraussetzungen
 
