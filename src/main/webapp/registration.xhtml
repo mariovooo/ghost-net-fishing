@@ -8,17 +8,27 @@
 </h:head>
 <h:body>
 <ui:include src="/navigation.xhtml" />
+<h1>Als bergende Person registrieren</h1>
 <h:form>
   <h:outputLabel for="username" value="Name:"/>
   <h:inputText id="username" value="#{registrationBean.username}" required="true"/><br/>
+  <h:message for="username" style="color:red"/><br/>
   
     <h:outputLabel for="phone" value="Telefonnummer:"/>
   <h:inputText id="phone" value="#{registrationBean.phone}" required="true"/><br/>
+  <h:message for="phone" style="color:red"/><br/>
 
   <h:outputLabel for="password" value="Passwort:"/>
   <h:inputSecret id="password" value="#{registrationBean.password}" required="true"/><br/>
+  <h:message for="password" style="color:red"/><br/>
 
-  <h:commandButton value="Registrieren" action="#{registrationBean.register}"/>
+      <h:commandButton value="Registrieren" action="#{registrationBean.register}">
+        <f:ajax execute="@form" render="@form successMessage"/>
+    </h:commandButton>
+
+    <br/><br/>
+
+    <h:outputText id="successMessage" value="Registrierung erfolgreich!" rendered="#{not empty registrationBean.username}" style="color:green"/>
 </h:form>
 </h:body>
 </html>
