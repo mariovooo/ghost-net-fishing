@@ -10,7 +10,7 @@
 
 <h:body>
 <ui:include src="/navigation.xhtml" />
-    <h1>Willkommen, #{loginBean.username} mit Telefonnummer #{loginBean.phone}</h1>
+    <h1>Willkommen, #{loginBean.username}!</h1>
     
         <h1>Aktuelle Geisternetze</h1>
         <h:form id="form">
@@ -30,6 +30,16 @@
         <f:facet name="header">Geschätzte Größe (m²)</f:facet>
         <h:outputText value="#{net.estimatedSize} #{'m²'}" rendered="#{!net.editMode}" />
         <h:inputText value="#{net.estimatedSize}" rendered="#{net.editMode}" />
+        </h:column>
+            <h:column>
+        <f:facet name="header">Meldende Person</f:facet>
+        <h:outputText value="#{net.reporterName}" rendered="#{!net.editMode}" />
+        <h:inputText value="#{net.reporterName}" rendered="#{net.editMode}" />
+        </h:column>
+        <h:column>
+        <f:facet name="header">Telefonnummer der meldenden Person</f:facet>
+        <h:outputText value="#{net.reporterPhone}" rendered="#{!net.editMode}" />
+        <h:inputText value="#{net.reporterPhone}" rendered="#{net.editMode}" />
         </h:column>
         
         <h:column>
@@ -82,7 +92,9 @@
     </h:dataTable>
     </h:form>
 
-    <h:outputText value="Token: #{loginBean.token}" />
+<h:form>
+    <h:commandButton value="Logout" action="#{loginBean.logout}" />
+</h:form>
     
 </h:body>
 </html>

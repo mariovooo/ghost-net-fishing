@@ -9,9 +9,17 @@
 <ui:include src="/navigation.xhtml" />
     <h1>Netz melden</h1>
     <h:form>
-        Latitude: <h:inputText value="#{ghostnet.location.latitude}" /><br/>
-        Longitude: <h:inputText value="#{ghostnet.location.longitude}" /><br/>
-        Geschätzte Größe: <h:inputText value="#{ghostnet.estimatedSize}" /><br/>
+    Latitude:* 
+    <h:inputText id="latitude" value="#{ghostnet.location.latitude}" required="true" requiredMessage="Bitte geben Sie den Breitengrad an." />
+    <h:message for="latitude" style="color:red"/><br/>
+    Longitude:* 
+    <h:inputText id="longitude" value="#{ghostnet.location.longitude}" required="true" requiredMessage="Bitte geben Sie den Längengrad an." />
+    <h:message for="longitude" style="color:red"/><br/>
+    Geschätzte Größe:* 
+    <h:inputText id="estimatedSize" value="#{ghostnet.estimatedSize}" required="true" requiredMessage="Bitte geben Sie die geschätzte Größe an." />
+    <h:message for="estimatedSize" style="color:red"/><br/>
+        Name: <h:inputText value="#{ghostnet.reporterName}" /><br/>
+        Telefonnummer: <h:inputText value="#{ghostnet.reporterPhone}" /><br/>
 
         <h:commandButton value="Netz melden" action="#{ghostnet.submit}" /><br/><br/>
 

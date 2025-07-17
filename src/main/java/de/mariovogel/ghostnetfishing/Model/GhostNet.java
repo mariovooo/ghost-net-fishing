@@ -16,6 +16,8 @@ public class GhostNet {
 	private Location location;
     @Enumerated(EnumType.STRING)
     private State state;
+    private String reporterName;
+    private String reporterPhone;
 
     public enum State {
         REPORTED("Gemeldet"),
@@ -72,6 +74,22 @@ public class GhostNet {
 	
 	public void setAssignedUser(String assignedUser) {
 		this.assignedUser = assignedUser;
+	}
+	
+	public String getReporterName() {
+		return reporterName;
+	}
+	
+	public void setReporterName(String reporterName) {
+		this.reporterName = reporterName;
+	}
+	
+	public String getReporterPhone() {
+		return reporterPhone;
+	}
+	
+	public void setReporterPhone(String reporterPhone) {
+		this.reporterPhone = reporterPhone;
 	}
 	
 	public Boolean getEditMode() {

@@ -28,6 +28,8 @@ public class GhostNetBean implements Serializable {
 	private String assignedUser;
 	private Boolean editMode = false;
     private Location location = new Location(0.0, 0.0);
+    private String reporterName;
+    private String reporterPhone;
 	
     public String submit() {
         GhostNet net = new GhostNet();
@@ -36,6 +38,13 @@ public class GhostNetBean implements Serializable {
         net.setAssignedUser(assignedUser);
         net.getState();
 		net.setState(State.REPORTED);
+		if (reporterName != null && !reporterName.isEmpty()) {
+			net.setReporterName(reporterName);
+		}
+		
+		if (reporterPhone != null && !reporterPhone.isEmpty()) {
+			net.setReporterPhone(reporterPhone);
+		}
 
         service.save(net);
 
@@ -90,6 +99,22 @@ public class GhostNetBean implements Serializable {
 	
 	public void setState(State state) {
 		this.state = state;
+	}
+	
+	public String getReporterName() {
+		return reporterName;
+	}
+	
+	public void setReporterName(String reporterName) {
+		this.reporterName = reporterName;
+	}
+	
+	public String getReporterPhone() {
+		return reporterPhone;
+	}
+	
+	public void setReporterPhone(String reporterPhone) {
+		this.reporterPhone = reporterPhone;
 	}
 	
 	public String getAssignedUser() {

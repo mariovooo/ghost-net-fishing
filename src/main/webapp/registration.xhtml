@@ -10,13 +10,13 @@
 <ui:include src="/navigation.xhtml" />
 <h:form>
   <h:outputLabel for="username" value="Name:"/>
-  <h:inputText id="username" value="#{registrationBean.username}" required="true"/>
+  <h:inputText id="username" value="#{registrationBean.username}" required="true"/><br/>
   
     <h:outputLabel for="phone" value="Telefonnummer:"/>
-  <h:inputText id="phone" value="#{registrationBean.phone}" required="true"/>
+  <h:inputText id="phone" value="#{registrationBean.phone}" required="true"/><br/>
 
   <h:outputLabel for="password" value="Passwort:"/>
-  <h:inputSecret id="password" value="#{registrationBean.password}" required="true"/>
+  <h:inputSecret id="password" value="#{registrationBean.password}" required="true"/><br/>
 
   <h:commandButton value="Registrieren" action="#{registrationBean.register}"/>
 </h:form>
