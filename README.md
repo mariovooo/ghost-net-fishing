@@ -105,7 +105,7 @@ Alternativ in Eclipse im Projektexplorer Rechtsklick auf das Root-Verzeichnis (h
 Mit folgendem Befehl wird der Docker-Stack gestartet:
 
 ```bash
-docker-compose.yml up
+docker-compose up
 ```
 
 ### 7. Anwendung deployen
