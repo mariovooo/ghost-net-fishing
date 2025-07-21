@@ -102,6 +102,8 @@ Alternativ in Eclipse im Projektexplorer Rechtsklick auf das Root-Verzeichnis (h
 
 ### 6. Docker-Container starten
 
+Docker Desktop starten
+
 Mit folgendem Befehl wird der Docker-Stack gestartet:
 
 ```bash
